@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de IMC - Pedro Henrique</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; width: 300px; }
+        h2 { color: #003366; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #003366; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0055aa; }
+        #resultado { margin-top: 20px; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de IMC</h2>
+        <input type="number" id="peso" placeholder="Peso (ex: 70)">
+        <input type="number" id="altura" placeholder="Altura (ex: 1.75)">
+        <button onclick="calcular()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
 
+    <script>
+        function calcular() {
+            const peso = document.getElementById('peso').value;
+            const altura = document.getElementById('altura').value;
+            if (peso && altura) {
+                const imc = (peso / (altura * altura)).toFixed(2);
+                let msg = "";
+                if (imc < 18.5) msg = "Abaixo do peso";
+                else if (imc < 25) msg = "Peso normal";
+                else msg = "Sobrepeso";
+                document.getElementById('resultado').innerHTML = `Seu IMC é ${imc}<br>Status: ${msg}`;
+            } else {
+                alert("Preencha todos os campos!");
+            }
+        }
+    </script>
+</body>
+</html>
